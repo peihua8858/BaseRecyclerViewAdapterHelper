@@ -10,10 +10,9 @@ import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.view.ViewParent
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import androidx.annotation.IdRes
+import androidx.annotation.*
 import androidx.annotation.IntRange
-import androidx.annotation.LayoutRes
-import androidx.annotation.NonNull
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +25,7 @@ import com.chad.library.adapter.base.listener.*
 import com.chad.library.adapter.base.module.*
 import com.chad.library.adapter.base.util.getItemView
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.fz.common.utils.checkContext
 import java.lang.reflect.Constructor
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Modifier
@@ -72,9 +72,10 @@ private interface BaseQuickAdapterModuleImp {
  * @constructor layoutId, data(Can null parameters, the default is empty data)
  */
 abstract class BaseQuickAdapter<T, VH : BaseViewHolder>
-@JvmOverloads constructor(@LayoutRes private val layoutResId: Int,
-                          data: MutableList<T>? = null)
-    : RecyclerView.Adapter<VH>(), BaseQuickAdapterModuleImp {
+@JvmOverloads constructor(
+        @LayoutRes private val layoutResId: Int,
+        data: MutableList<T>? = null,
+) : RecyclerView.Adapter<VH>(), BaseQuickAdapterModuleImp {
 
     companion object {
         const val HEADER_VIEW = 0x10000111
@@ -1390,4 +1391,34 @@ abstract class BaseQuickAdapter<T, VH : BaseViewHolder>
     fun getOnItemChildClickListener(): OnItemChildClickListener? = mOnItemChildClickListener
 
     fun getOnItemChildLongClickListener(): OnItemChildLongClickListener? = mOnItemChildLongClickListener
+    open fun checkContext(): Context {
+        return try {
+            context
+        } catch (e: Throwable) {
+            val msg = e.message ?: "Context is not found."
+            checkNotNull(checkContext(this)) { msg }
+        }
+    }
+
+    @ColorInt
+    fun getColor(@ColorRes colorRes: Int): Int {
+        return ContextCompat.getColor(checkContext(), colorRes)
+    }
+
+    @Px
+    fun getDimensionPixelSize(@DimenRes id: Int): Int {
+        return checkContext().resources.getDimensionPixelSize(id)
+    }
+
+    fun getString(@StringRes resInt: Int): String {
+        return checkContext().getString(resInt)
+    }
+
+    fun getString(@StringRes resInt: Int, vararg format: Any): String {
+        return checkContext().getString(resInt, format)
+    }
+
+    fun getText(@StringRes resInt: Int): CharSequence {
+        return checkContext().getText(resInt)
+    }
 }

@@ -1,8 +1,10 @@
 buildscript {
     ext.kotlin_version = '1.4.21'
     repositories {
-        google()
-        jcenter()
+        mavenLocal()
+        maven {
+            url "http://" + String.valueOf(maven_address) + "/repository/maven-public/"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.1'
@@ -12,9 +14,10 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
-        jcenter()
-        mavenCentral()
+        mavenLocal()
+        maven {
+            url "http://" + String.valueOf(maven_address) + "/repository/maven-public/"
+        }
     }
 }
 
