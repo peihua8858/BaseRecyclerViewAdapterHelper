@@ -34,48 +34,15 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 /**
- * 获取模块
- */
-private interface BaseQuickAdapterModuleImp {
-    /**
-     * 重写此方法，返回自定义模块
-     * @param baseQuickAdapter BaseQuickAdapter<*, *>
-     * @return BaseLoadMoreModule
-     */
-    fun addLoadMoreModule(baseQuickAdapter: BaseQuickAdapter<*, *>): BaseLoadMoreModule {
-        return BaseLoadMoreModule(baseQuickAdapter)
-    }
-
-    /**
-     * 重写此方法，返回自定义模块
-     * @param baseQuickAdapter BaseQuickAdapter<*, *>
-     * @return BaseUpFetchModule
-     */
-    fun addUpFetchModule(baseQuickAdapter: BaseQuickAdapter<*, *>): BaseUpFetchModule {
-        return BaseUpFetchModule(baseQuickAdapter)
-    }
-
-    /**
-     * 重写此方法，返回自定义模块
-     * @param baseQuickAdapter BaseQuickAdapter<*, *>
-     * @return BaseExpandableModule
-     */
-    fun addDraggableModule(baseQuickAdapter: BaseQuickAdapter<*, *>): BaseDraggableModule {
-        return BaseDraggableModule(baseQuickAdapter)
-    }
-}
-
-/**
  * Base Class
  * @param T : type of data, 数据类型
  * @param VH : BaseViewHolder
  * @constructor layoutId, data(Can null parameters, the default is empty data)
  */
 abstract class BaseQuickAdapter<T, VH : BaseViewHolder>
-@JvmOverloads constructor(
-        @LayoutRes private val layoutResId: Int,
-        data: MutableList<T>? = null,
-) : RecyclerView.Adapter<VH>(), BaseQuickAdapterModuleImp {
+@JvmOverloads constructor(@LayoutRes private val layoutResId: Int,
+                          data: MutableList<T>? = null)
+    : RecyclerView.Adapter<VH>() {
 
     companion object {
         const val HEADER_VIEW = 0x10000111
