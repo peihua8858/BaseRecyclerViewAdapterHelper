@@ -1,6 +1,7 @@
 package com.chad.library.adapter.base
 
 import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.chad.library.adapter.base.module.BaseLoadMoreModule
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 
@@ -14,4 +15,8 @@ abstract class BaseMultiItemLoadMoreAdapter<
         T : MultiItemEntity,
         VH : BaseViewHolder,
         >(data: MutableList<T>? = null) :
-        BaseMultiItemQuickAdapter<T, VH>(data), LoadMoreModule
+        BaseMultiItemQuickAdapter<T, VH>(data), LoadMoreModule {
+    override fun addLoadMoreModule(baseQuickAdapter: BaseQuickAdapter<*, *>): BaseLoadMoreModule {
+        return BaseLoadMoreModule(baseQuickAdapter)
+    }
+}

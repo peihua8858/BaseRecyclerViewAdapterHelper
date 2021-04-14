@@ -1382,7 +1382,7 @@ abstract class BaseQuickAdapter<T, VH : BaseViewHolder>
     }
 
     fun getString(@StringRes resInt: Int, vararg format: Any): String {
-        return checkContext().getString(resInt, format)
+        return checkContext().getString(resInt, *format)
     }
 
     fun getText(@StringRes resInt: Int): CharSequence {

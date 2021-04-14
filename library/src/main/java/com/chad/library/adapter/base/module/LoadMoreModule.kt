@@ -26,6 +26,7 @@ interface LoadMoreModule {
      * @param baseQuickAdapter BaseQuickAdapter<*, *>
      * @return BaseLoadMoreModule
      */
+    @JvmDefault
     fun addLoadMoreModule(baseQuickAdapter: BaseQuickAdapter<*, *>): BaseLoadMoreModule {
         return BaseLoadMoreModule(baseQuickAdapter)
     }

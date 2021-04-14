@@ -20,7 +20,8 @@ import com.fz.common.network.NetworkUtil
 open class LoadMoreHelper<T, ADAPTER : BaseQuickAdapter<T, out BaseViewHolder>>(
         private val mRecyclerView: RecyclerView,
         private val mAdapter: ADAPTER,
-        private val helperListener: OnLoadMoreHelperListener) {
+        private val helperListener: OnLoadMoreHelperListener,
+) {
     @IntDef(REQUEST_TYPE_LOADING,
             REQUEST_TYPE_NORMAL,
             REQUEST_TYPE_LOAD_MORE)
@@ -36,12 +37,12 @@ open class LoadMoreHelper<T, ADAPTER : BaseQuickAdapter<T, out BaseViewHolder>>(
     /**
      * 当前页码
      */
-    private var currentPage = 1
+    var currentPage = 1
 
     /**
      * 每一页的数据量
      */
-    private val pageSize = 20
+    var pageSize = 20
 
     /**
      * 用于判断当前是否正在拉取数据
@@ -406,7 +407,7 @@ open class LoadMoreHelper<T, ADAPTER : BaseQuickAdapter<T, out BaseViewHolder>>(
         if (data != null && data.isNotEmpty()) {
             when (mRequestType) {
                 REQUEST_TYPE_LOAD_MORE -> mAdapter.addData(data)
-                else -> mAdapter.setNewData(ArrayList(data))
+                else -> mAdapter.setNewInstance(ArrayList(data))
             }
         }
         refreshComplete(false, isMoreData, gone)
