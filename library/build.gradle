@@ -50,8 +50,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.annotation:annotation:1.2.0'
-    implementation 'com.fz.commutil:commutil:1.0.53-SNAPSHOT'
-    compileOnly 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.fz.commutil:commutil:1.0.55-SNAPSHOT'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0'
 }
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
     sourceCompatibility = JavaVersion.VERSION_1_8

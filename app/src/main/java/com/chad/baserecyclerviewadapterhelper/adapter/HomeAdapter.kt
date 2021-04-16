@@ -20,5 +20,7 @@ class HomeAdapter(data: MutableList<HomeEntity>) :
     override fun convertHeader(helper: BaseViewHolder, item: HomeEntity) {
         helper.setGone(R.id.more, true)
         helper.setText(R.id.header, item.headerTitle)
+        val result = getString(R.string.text_only_left, 55)
+        helper.setText(R.id.header_sub, result)
     }
 }

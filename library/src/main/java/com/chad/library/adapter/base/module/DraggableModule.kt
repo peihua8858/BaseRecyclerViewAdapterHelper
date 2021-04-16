@@ -31,6 +31,7 @@ interface DraggableModule {
      * @param baseQuickAdapter BaseQuickAdapter<*, *>
      * @return BaseExpandableModule
      */
+    @JvmDefault
     fun addDraggableModule(baseQuickAdapter: BaseQuickAdapter<*, *>): BaseDraggableModule {
         return BaseDraggableModule(baseQuickAdapter)
     }

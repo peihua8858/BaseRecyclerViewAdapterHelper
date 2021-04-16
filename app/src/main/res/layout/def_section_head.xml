@@ -27,7 +27,16 @@
             android:textColor="@color/txt_color"
             android:textSize="20sp"
             android:textStyle="bold" />
-
+        <TextView
+            android:id="@+id/header_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center"
+            android:paddingLeft="10dp"
+            android:textColor="@color/txt_color"
+            android:textSize="20sp"
+            android:textStyle="bold" />
         <TextView
             android:id="@+id/more"
             android:layout_width="wrap_content"

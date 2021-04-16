@@ -4,4 +4,5 @@
     <string name="empty_no_data">There is no data, Click Retry</string>
 
     <string name="see_more">See More ...</string>
+    <string name="text_only_left">Seulement %1$d restant(s)</string>
 </resources>

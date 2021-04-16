@@ -19,6 +19,7 @@ interface UpFetchModule {
      * @param baseQuickAdapter BaseQuickAdapter<*, *>
      * @return BaseUpFetchModule
      */
+    @JvmDefault
     fun addUpFetchModule(baseQuickAdapter: BaseQuickAdapter<*, *>): BaseUpFetchModule {
         return BaseUpFetchModule(baseQuickAdapter)
     }
