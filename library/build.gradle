@@ -50,7 +50,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.annotation:annotation:1.2.0'
-    implementation 'com.fz.commutil:commutil:1.0.1'
+    implementation 'com.github.peihua8858:kotlinCommonUtils:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 }
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
@@ -61,4 +61,6 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
         freeCompilerArgs += "-Xjvm-default=compatibility"
     }
 }
-apply from: "push_maven.gradle"
+//apply from: "push_maven.gradle"
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.peihua8858'
