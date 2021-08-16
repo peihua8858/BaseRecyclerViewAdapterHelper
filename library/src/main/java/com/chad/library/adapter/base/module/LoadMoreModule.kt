@@ -20,13 +20,13 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 /**
  * 需要【向下加载更多】功能的，[BaseQuickAdapter]继承此接口
  */
+@JvmDefaultWithoutCompatibility
 interface LoadMoreModule {
     /**
      * 重写此方法，返回自定义模块
      * @param baseQuickAdapter BaseQuickAdapter<*, *>
      * @return BaseLoadMoreModule
      */
-    @JvmDefault
     fun addLoadMoreModule(baseQuickAdapter: BaseQuickAdapter<*, *>): BaseLoadMoreModule {
         return BaseLoadMoreModule(baseQuickAdapter)
     }
