@@ -68,16 +68,16 @@ group = 'com.github.peihua8858'
 //apply from: "push_maven.gradle"
 //apply plugin: 'com.github.dcendents.android-maven'
 //group='com.github.peihua8858'
-//afterEvaluate {
-//    publishing {
-//        publications {
-//            // Creates a Maven publication called "release".
-//            release(MavenPublication) {
-//                from components.release
-//                groupId = 'com.github.peihua8858'
-//                artifactId = 'BaseRecyclerViewAdapterHelper:Tag'
-//                version = '3.0.4.2'
-//            }
-//        }
-//    }
-//}
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.peihua8858'
+                artifactId = 'BaseRecyclerViewAdapterHelper'
+                version = '3.0.4.2'
+            }
+        }
+    }
+}
