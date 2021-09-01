@@ -5,7 +5,9 @@ import com.chad.library.adapter.base.module.BaseLoadMoreModule
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 
-abstract class BaseQuickLoadMoreAdapter<T, VH : BaseViewHolder>(
+
+abstract class BaseQuickLoadMoreAdapter<T, VH : BaseViewHolder>
+@JvmOverloads constructor(
     @LayoutRes private val layoutResId: Int,
     data: MutableList<T>? = null
 ) : BaseQuickAdapter<T, VH>(layoutResId, data), LoadMoreModule {

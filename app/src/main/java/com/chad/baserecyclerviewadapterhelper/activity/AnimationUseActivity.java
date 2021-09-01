@@ -2,7 +2,6 @@ package com.chad.baserecyclerviewadapterhelper.activity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -19,7 +18,6 @@ import com.chad.baserecyclerviewadapterhelper.utils.Tips;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.jaredrummler.materialspinner.MaterialSpinner;
-import com.kyleduo.switchbutton.SwitchButton;
 
 /**
  * https://github.com/CymChad/BaseRecyclerViewAdapterHelper
@@ -119,18 +117,18 @@ public class AnimationUseActivity extends AppCompatActivity {
         });
         //init firstOnly state
         mAnimationAdapter.setAnimationFirstOnly(false);
-        SwitchButton switchButton = findViewById(R.id.switch_button);
-        switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
-                if (isChecked) {
-                    mAnimationAdapter.setAnimationFirstOnly(true);
-                } else {
-                    mAnimationAdapter.setAnimationFirstOnly(false);
-                }
-                mAnimationAdapter.notifyDataSetChanged();
-            }
-        });
+//        SwitchButton switchButton = findViewById(R.id.switch_button);
+//        switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+//                if (isChecked) {
+//                    mAnimationAdapter.setAnimationFirstOnly(true);
+//                } else {
+//                    mAnimationAdapter.setAnimationFirstOnly(false);
+//                }
+//                mAnimationAdapter.notifyDataSetChanged();
+//            }
+//        });
 
     }
 
