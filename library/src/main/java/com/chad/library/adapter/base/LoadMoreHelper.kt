@@ -291,18 +291,6 @@ open class LoadMoreHelper<T, ADAPTER : BaseQuickAdapter<T, out BaseViewHolder>>(
     }
 
     /**
-     * 计算总页数
-     *
-     * @param totalSize
-     * @return
-     */
-    fun calTotalPage(totalSize: Int, pageSize: Int): Int {
-        val pageNum = totalSize / pageSize
-        val leftPage = if (totalSize % pageSize > 0) 1 else 0
-        return pageNum + leftPage
-    }
-
-    /**
      * 刷新数据
      *
      * @param totalSize 数据总量
@@ -541,5 +529,19 @@ open class LoadMoreHelper<T, ADAPTER : BaseQuickAdapter<T, out BaseViewHolder>>(
          * 上拉加载更多数据
          */
         const val REQUEST_TYPE_LOAD_MORE = 0x014
+
+        /**
+         * 计算总页数
+         *
+         * @param totalSize 总数据条数
+         * @param pageSize 每页数据量
+         * @return
+         */
+        @JvmStatic
+        fun calTotalPage(totalSize: Int, pageSize: Int): Int {
+            val pageNum = totalSize / pageSize
+            val leftPage = if (totalSize % pageSize > 0) 1 else 0
+            return pageNum + leftPage
+        }
     }
 }
