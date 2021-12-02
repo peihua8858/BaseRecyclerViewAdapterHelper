@@ -287,6 +287,16 @@ open class LoadMoreHelper<T, ADAPTER : BaseQuickAdapter<T, out BaseViewHolder>>(
      * @return
      */
     fun calTotalPage(totalSize: Int): Int {
+        return calTotalPage(totalSize, pageSize)
+    }
+
+    /**
+     * 计算总页数
+     *
+     * @param totalSize
+     * @return
+     */
+    fun calTotalPage(totalSize: Int, pageSize: Int): Int {
         val pageNum = totalSize / pageSize
         val leftPage = if (totalSize % pageSize > 0) 1 else 0
         return pageNum + leftPage
