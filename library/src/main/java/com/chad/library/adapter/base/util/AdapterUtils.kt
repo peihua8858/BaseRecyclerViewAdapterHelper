@@ -26,17 +26,17 @@ fun ViewGroup.getItemView(@LayoutRes layoutResId: Int): View {
 
 @ColorInt
 fun BaseQuickAdapter<*, *>?.getColor(@ColorRes colorRes: Int): Int {
-    val context: Context = checkContext(this) ?: return 0.eLog { "Context  is null." }
+    val context: Context = checkContext(this?.context) ?: return 0.eLog { "Context  is null." }
     return ContextCompat.getColor(context, colorRes)
 }
 
 fun BaseQuickAdapter<*, *>?.getDrawable(@DrawableRes drawableRes: Int): Drawable? {
-    val context: Context = checkContext(this) ?: return null.eLog { "Context  is null." }
+    val context: Context = checkContext(this?.context) ?: return null.eLog { "Context  is null." }
     return ContextCompat.getDrawable(context, drawableRes)
 }
 
 fun BaseQuickAdapter<*, *>?.getDimens(@DimenRes resId: Int): Int {
-    val context: Context = checkContext(this) ?: return 0.eLog { "Context  is null." }
+    val context: Context = checkContext(this?.context) ?: return 0.eLog { "Context  is null." }
     return context.getDimens(resId)
 }
 
@@ -49,7 +49,8 @@ fun BaseQuickAdapter<*, *>?.getDimens(@DimenRes resId: Int): Int {
  * @version 1.0
  */
 fun BaseQuickAdapter<*, *>?.dip2px(dpValue: Int): Int {
-    return dip2px(dpValue.toFloat())
+    val context: Context = checkContext(this?.context) ?: return 0.eLog { "Context  is null." }
+    return context.dip2px(dpValue.toFloat())
 }
 
 /**
@@ -59,7 +60,7 @@ fun BaseQuickAdapter<*, *>?.dip2px(dpValue: Int): Int {
  * @return drawable对象
  */
 fun BaseQuickAdapter<*, *>?.getResourceId(attrId: Int): Int {
-    val context: Context = checkContext(this) ?: return 0.eLog { "Context  is null." }
+    val context: Context = checkContext(this?.context) ?: return 0.eLog { "Context  is null." }
     return getResourceId(context, attrId)
 }
 
@@ -74,6 +75,6 @@ fun BaseQuickAdapter<*, *>?.getResourceId(attrId: Int): Int {
  * @version 1.0
  */
 fun BaseQuickAdapter<*, *>?.resolveAttribute(resId: Int, @StyleRes defaultRes: Int): Int {
-    val context: Context = checkContext(this) ?: return 0.eLog { "Context  is null." }
+    val context: Context = checkContext(this?.context) ?: return 0.eLog { "Context  is null." }
     return resolveAttribute(context, resId, defaultRes)
 }
