@@ -12,7 +12,7 @@ import com.chad.library.adapter.base.provider.BaseItemProvider
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.fz.common.view.utils.setOnNoDoubleClickListener
 
-class BaseMultiNodeAdapter<T : BaseNode<T>>(nodeList: MutableList<T>? = null)   : BaseProviderMultiAdapter<T>(null) {
+abstract class BaseMultiNodeAdapter<T : BaseNode<T>>(nodeList: MutableList<T>? = null)   : BaseProviderMultiAdapter<T>(null) {
     private val layouts: SparseIntArray by lazy(LazyThreadSafetyMode.NONE) { SparseIntArray() }
     private val fullSpanNodeTypeSet = HashSet<Int>()
 
