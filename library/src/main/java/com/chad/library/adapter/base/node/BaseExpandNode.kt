@@ -1,6 +1,6 @@
 package com.chad.library.adapter.base.node
 
-abstract class BaseExpandNode<T> : BaseNode<T> {
+abstract class BaseExpandNode<T: BaseNode<T>> : BaseNode<T> {
     var isExpanded: Boolean = true
 
 }

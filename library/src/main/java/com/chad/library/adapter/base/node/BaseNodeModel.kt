@@ -10,11 +10,11 @@ import java.util.*
  * @date 2020/12/20 10:39
  * @version 1.0
  */
-abstract class BaseNodeModel<T> : BaseExpandNode<T>(), MultiItemEntity {
+abstract class BaseNodeModel<T: BaseNode<T>> : BaseExpandNode<T>(), MultiItemEntity {
     override var itemType: Int = 0
-    final override val childNode: MutableList<BaseNode<T>>?
+    final override val childNode: MutableList<T>?
         get() {
-            return subItems as? MutableList<BaseNode<T>>
+            return subItems
         }
     var parent: Any? = null
     var isChecked: Boolean = false
