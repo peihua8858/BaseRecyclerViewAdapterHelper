@@ -10,7 +10,7 @@ import java.util.*
  * @date 2020/12/20 10:39
  * @version 1.0
  */
-abstract class BaseNodeModel<T: BaseNode<T>> : BaseExpandNode<T>(), MultiItemEntity {
+abstract class BaseNodeModel<T : BaseNode<T>> : BaseExpandNode<T>(), MultiItemEntity {
     override var itemType: Int = 0
     final override val childNode: MutableList<T>?
         get() {
@@ -21,6 +21,7 @@ abstract class BaseNodeModel<T: BaseNode<T>> : BaseExpandNode<T>(), MultiItemEnt
 
     abstract var subItems: MutableList<T>?
     var spitCount = -1
+
     /**
      * 获取选中的item
      *
@@ -44,7 +45,7 @@ abstract class BaseNodeModel<T: BaseNode<T>> : BaseExpandNode<T>(), MultiItemEnt
     }
 
     fun spitCount(): Int {
-       return spitCount
+        return spitCount
     }
 
     fun subList(fromIndex: Int, toIndex: Int): MutableList<T> {
@@ -77,6 +78,14 @@ abstract class BaseNodeModel<T: BaseNode<T>> : BaseExpandNode<T>(), MultiItemEnt
         get() {
             return hasChildren()
         }
+    val isParent: Boolean
+        get() {
+            return itemType == ITEM_TYPE_PARENT
+        }
+    val isChild: Boolean
+        get() {
+            return itemType == ITEM_TYPE_CHILD
+        }
 
     companion object {
         /**
@@ -99,17 +108,27 @@ abstract class BaseNodeModel<T: BaseNode<T>> : BaseExpandNode<T>(), MultiItemEnt
          * @version 1.0
          */
         @JvmStatic
-        fun <T : BaseNodeModel<*>> processExpandableItem(list: List<T>?, treeDepth: Int) {
+        fun <T : BaseNodeModel<*>> processExpandableItem(
+            parent: T?,
+            list: List<T>?,
+            treeDepth: Int, action: (BaseNodeModel<*>) -> Unit
+        ) {
             var tempTreeDepth = treeDepth
             tempTreeDepth++
             if (list != null && list.isNotEmpty()) {
                 for (expandableItem in list) {
                     expandableItem.treeDepth = tempTreeDepth
+                    action(expandableItem)
                     if (expandableItem.hasChildren) {
                         expandableItem.itemType = ITEM_TYPE_PARENT
                         val subItems = expandableItem.subItems
-                        processExpandableItem(subItems as MutableList<BaseNodeModel<*>>, tempTreeDepth)
+                        processExpandableItem(
+                            expandableItem,
+                            subItems as MutableList<BaseNodeModel<*>>,
+                            tempTreeDepth, action
+                        )
                     } else {
+                        expandableItem.parent = parent
                         expandableItem.itemType = ITEM_TYPE_CHILD
                     }
                 }
@@ -125,8 +144,24 @@ abstract class BaseNodeModel<T: BaseNode<T>> : BaseExpandNode<T>(), MultiItemEnt
          * @version 1.0
          */
         @JvmStatic
+        fun <T : BaseNodeModel<*>> processExpandableItem(
+            data: List<T>?,
+            action: (BaseNodeModel<*>) -> Unit
+        ) {
+            processExpandableItem(null, data, 0, action)
+        }
+
+        /**
+         * 递归处理实体层级关系
+         *
+         * @param data
+         * @author dingpeihua
+         * @date 2019/11/7 19:54
+         * @version 1.0
+         */
+        @JvmStatic
         fun <T : BaseNodeModel<*>> processExpandableItem(data: List<T>?) {
-            processExpandableItem(data, 0)
+            processExpandableItem(data) {}
         }
     }
 }
