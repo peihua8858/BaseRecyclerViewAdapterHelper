@@ -210,7 +210,7 @@ abstract class BaseMultiNodeAdapter<T : BaseNode<T>>(nodeList: MutableList<T>? =
         this.data.removeAt(position)
         removeCount += 1
 
-        val node = this.data[position]
+        val node = this.getItemOrNull(position)
         // 移除脚部
         if (node is NodeFooterImp<*> && node.footerNode != null) {
             this.data.removeAt(position)
